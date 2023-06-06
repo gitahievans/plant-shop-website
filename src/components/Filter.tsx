@@ -45,10 +45,10 @@ const Filter = () => {
       <aside
         className={`${
           sideMenuBtnClicked ? 'block' : 'hidden '
-        } md:block  w-72 `}
+        } md:block  w-72 fixed left-0 z-10 bg-white h-screen `}
         aria-label="Sidebar"
       >
-        <div className="flex flex-col gap-6 h-full px-4 py-4 overflow-y-auto border">
+        <div className="flex flex-col gap-6 h-full px-4 py-4 border  overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <h1>Filter</h1>
           <Divider />
           <ul className="flex flex-col gap-6">

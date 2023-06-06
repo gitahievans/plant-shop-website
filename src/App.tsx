@@ -29,9 +29,9 @@ function App() {
   };
 
   return (
-    <div className="max-w-[360px] md:max-w-full px-2 mx-auto flex flex-col min-h-screen ">
+    <div className="max-w-[360px] md:max-w-full px-2 mx-auto flex flex-col h-screen ">
       <Navbar />
-      <main className=" w-full flex ">
+      <main className=" w-full h-full flex mt-[65px] md:mt-[73px]">
         <Filter />
         <Routes>
           <Route path="/" element={<Layout />}>

@@ -62,7 +62,7 @@ const Navbar = () => {
       </div>
 
       <div className=" flex gap-4 items-center">
-        <div className="hidden md:block dropdown dropdown-end">
+        <div className="hidden md:block dropdown dropdown-right">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <div className="indicator">
               <svg

@@ -24,7 +24,7 @@ function App() {
   };
 
   return (
-    <div className="max-w-[320px] md:max-w-full px-2 mx-auto flex flex-col gap-8 min-h-screen">
+    <div className="max-w-[360px] md:max-w-full px-2 mx-auto flex flex-col gap-8 min-h-screen">
       <Routes>
         <Route path="/" element={<Layout />} />
       </Routes>

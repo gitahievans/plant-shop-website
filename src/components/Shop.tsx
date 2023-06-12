@@ -84,7 +84,7 @@ const Shop = () => {
         </div>
       </div>
 
-      <div className=" flex flex-col md:flex-row gap-4 items-center  rounded-2xl flex-wrap">
+      <div className=" flex flex-col md:flex-row gap-6 items-center flex-wrap">
         {plants && plants.length > 0 ?
           plants.map((plant) => {
             return <PlantCard key={plant.id} plant={plant} />

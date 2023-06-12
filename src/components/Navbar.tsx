@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import profilePic from '../assets/images/me.jpg';
 import menu from '../assets/icons/mobile-menu.svg';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { SideMenuBtnContext } from '../contexts/mobileSideMenuShow';
 
 const Navbar = () => {
@@ -40,7 +40,11 @@ const Navbar = () => {
             alt="icon"
             className="h-10"
           />
-          <a className="btn btn-ghost normal-case text-xl">OYOTEE</a>
+          <a className="btn btn-ghost normal-case text-xl">
+            <p>GREEN</p>
+            <span className='animate-bounce'>🌲</span>
+            <p>ROOM</p>
+            <span className='animate-bounce'>🌱 </span> </a>
         </div>
         <div className="hidden md:flex items-center gap-10">
           <NavLink

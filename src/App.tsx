@@ -9,7 +9,7 @@ import Filter from './components/Filter';
 function App() {
   
   return (
-    <div className="max-w-[360px] md:max-w-full  mx-auto flex flex-col h-screen font-serif">
+    <div className="max-w-[360px] md:max-w-full  mx-auto flex flex-col h-screen ">
       <Navbar />
       <main className=" w-full h-full flex mt-[65px] md:mt-[73px]">
         <Filter />

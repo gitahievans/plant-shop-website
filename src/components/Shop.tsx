@@ -1,7 +1,15 @@
-import React from 'react';
+import { usePlantsData } from '../hooks/usePlantsData';
 import PlantCard from './PlantCard';
 
 const Shop = () => {
+
+  const { data, isLoading } = usePlantsData();
+  const plants = data;
+
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <form className="flex flex-col gap-2">
@@ -77,11 +85,11 @@ const Shop = () => {
       </div>
 
       <div className=" flex flex-col md:flex-row gap-4 items-center  rounded-2xl flex-wrap">
-        <PlantCard />
-        <PlantCard />
-        <PlantCard />
-        <PlantCard />
-        <PlantCard /> <PlantCard /> <PlantCard /> <PlantCard /> <PlantCard />
+        {plants && plants.length > 0 ?
+          plants.map((plant) => {
+            return <PlantCard key={plant.id} plant={plant} />
+          }) : <p>No plants</p>
+        }
       </div>
     </div>
   );

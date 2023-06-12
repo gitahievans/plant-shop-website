@@ -1,17 +1,27 @@
+import { useState } from 'react';
 import { usePlantsData } from '../hooks/usePlantsData';
 import PlantCard from './PlantCard';
 
 const Shop = () => {
-
+  const [value, setValue] = useState('')
   const { data, isLoading } = usePlantsData();
   const plants = data;
+  // console.log(plants);
+
+  let searchedPlants = [];
+  if (plants && plants.length > 0) {
+    searchedPlants = plants.filter(plant => plant.name.toLowerCase().includes(value.toLocaleLowerCase()));
+  }
+  console.log(searchedPlants)
+
 
   if (isLoading) {
     return <div>Loading...</div>
   }
 
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 pb-3">
       <form className="flex flex-col gap-2">
         <label
           htmlFor="default-search"
@@ -42,7 +52,7 @@ const Shop = () => {
             id="default-search"
             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Lily"
-            required
+            onChange={({ target }) => setValue(target.value)}
           />
         </div>
         <p>Search results for 'Lily'</p>
@@ -85,10 +95,14 @@ const Shop = () => {
       </div>
 
       <div className=" flex flex-col md:flex-row gap-6 items-center flex-wrap">
-        {plants && plants.length > 0 ?
-          plants.map((plant) => {
-            return <PlantCard key={plant.id} plant={plant} />
-          }) : <p>No plants</p>
+        {searchedPlants && searchedPlants.length > 0
+          ? searchedPlants.map((plant) => {
+            return (<PlantCard key={plant.id} plant={plant} />)
+          }) :
+          plants && plants.length > 0 ?
+            plants.map((plant) => {
+              return <PlantCard key={plant.id} plant={plant} />
+            }) : <p>No plants</p>
         }
       </div>
     </div>

@@ -1,7 +1,6 @@
 import { addDoc, collection } from "firebase/firestore";
 import FormImage from "./FormImage";
-import horizontal from '../assets/images/horizontal-crawling.jpg'
-import top from '../assets/images/top-hanging.avif'
+import bg from '../assets/images/formBg.jpg'
 import { db } from "../config/firebase";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
@@ -39,7 +38,7 @@ const NewPlant = () => {
   return (
     <div className="flex h-full relative">
       <FormImage />
-      <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4 w-1/2 mt-44 px-2" >
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4 w-full md:w-1/2 md:mt-44 px-2 mx-auto" >
         <div className="flex flex-col gap-4">
           <label htmlFor="plantName" className="block text-sm font-medium text-gray-900 dark:text-white">Plant Name</label>
           <input
@@ -89,7 +88,6 @@ const NewPlant = () => {
         </div>
         <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 btn">Submit</button>
       </form >
-      <img src={horizontal} alt="" className="absolute right-[133px] -top-[87px] h-80 -z-10" />
       <DevTool control={control} />
     </div>
   )

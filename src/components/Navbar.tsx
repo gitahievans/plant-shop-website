@@ -1,19 +1,23 @@
 import { NavLink } from 'react-router-dom';
 import profilePic from '../assets/images/me.jpg';
 import menu from '../assets/icons/mobile-menu.svg';
+import { useContext, useState } from 'react';
+import { SideMenuBtnContext } from '../contexts/mobileSideMenuShow';
+
 const Navbar = () => {
+  const sideMenuBtnContext = useContext(SideMenuBtnContext);
+
+  const sideMenuBtnClicked = sideMenuBtnContext?.sideMenuBtnClicked;
+  const setSideMenuBtnClicked = sideMenuBtnContext?.setSideMenuBtnClicked;
+
   return (
-    <div className="navbar flex justify-between fixed top-0 right-0 z-50">
+    <div className="navbar fixed top-0 flex justify-between  border-b max-w-[360px] md:max-w-full bg-white z-50">
       <button
-        data-drawer-target="cta-button-sidebar"
-        data-drawer-toggle="cta-button-sidebar"
-        aria-controls="cta-button-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 mr-8 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 "
-        onClick={() => {
-          const sidebar = document.getElementById('cta-button-sidebar');
-          sidebar?.classList.toggle('-translate-x-full');
-        }}
+        className="inline-flex items-center p-2 mt-2 mr-8 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 "
+        onClick={() =>
+          setSideMenuBtnClicked && setSideMenuBtnClicked(!sideMenuBtnClicked)
+        }
       >
         <svg
           className="w-6 h-6"
@@ -87,7 +91,7 @@ const Navbar = () => {
       </div>
 
       <div className=" flex gap-4 items-center">
-        <div className="hidden md:block dropdown dropdown-right">
+        <div className="hidden md:block dropdown dropdown-end dropdown-hover">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
             <div className="indicator">
               <svg
@@ -122,9 +126,10 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+
         <button
           type="button"
-          className="md:hidden flex gap-4 items-center h-12 dropdown dropdown-hover dropdown-bottom dropdown-end "
+          className="md:hidden flex gap-4 items-center h-12 dropdown dropdown-bottom dropdown-end"
         >
           <img src={menu} alt="" />
           <ul

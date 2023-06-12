@@ -1,68 +1,73 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Divider } from '@mantine/core';
 import { Rating } from '@mantine/core';
-import ctaBg from '../assets/images/cta-bg.jpg';
-const Filter = () => {
-  const [checked, setChecked] = useState(false);
-  const [value, setValue] = useState(0);
+import { SideMenuBtnContext } from '../contexts/mobileSideMenuShow';
 
+const Filter = () => {
+  const categories = [
+    {
+      spanText: 'Gardening',
+    },
+    {
+      spanText: 'Seeds',
+    },
+    {
+      spanText: 'Plants',
+    },
+    {
+      spanText: 'Bulbs',
+    },
+    ,
+    {
+      spanText: 'Flowers',
+    },
+  ];
+  const [value, setValue] = useState(0);
+  // we initialize our checkbox state as an array equal to the length of the categories array and set it to false.
+  const [checkedCategories, setCheckedCategories] = useState(
+    categories.map(() => false)
+  );
+  // the handleChange function take 'index' as a parameter, representing the index of the checked being changed.
+
+  const handleChange = (index: number) => {
+    // A new array is created to avoide mutate the original array.
+    const newCheckedCategories = [...checkedCategories];
+    // the element at the specified index checked is modified to the oposite state
+    newCheckedCategories[index] = !newCheckedCategories[index];
+    setCheckedCategories(newCheckedCategories);
+  };
+  const sideMenuBtnContext = useContext(SideMenuBtnContext);
+
+  // Accessing the values from the context
+  const sideMenuBtnClicked = sideMenuBtnContext?.sideMenuBtnClicked;
   return (
     <>
       <aside
-        id="cta-button-sidebar"
-        className="fixed top-20 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className={`${
+          sideMenuBtnClicked ? 'block' : 'hidden '
+        } md:block  w-72 fixed left-0 z-10 bg-white h-screen `}
         aria-label="Sidebar"
       >
-        <div className="flex flex-col gap-6 h-full px-4 py-4 overflow-y-auto border dark:bg-gray-800">
+        <div className="flex flex-col gap-6 h-full px-4 py-4 border  overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <h1>Filter</h1>
           <Divider />
           <ul className="flex flex-col gap-6">
             <li>Categories</li>
-            <li className="flex items-center gap-4">
-              <input
-                type="checkbox"
-                checked={checked}
-                className={`checkbox checkbox-success`}
-                onChange={(e) => setChecked(e.target.checked)}
-              />
-              <span>Gardening</span>
-            </li>{' '}
-            <li className="flex items-center gap-4">
-              <input
-                type="checkbox"
-                checked={checked}
-                className={`checkbox checkbox-success`}
-                onChange={(e) => setChecked(e.target.checked)}
-              />
-              <span>Seeds</span>
-            </li>
-            <li className="flex items-center gap-4">
-              <input
-                type="checkbox"
-                checked={checked}
-                className={`checkbox checkbox-success`}
-                onChange={(e) => setChecked(e.target.checked)}
-              />
-              <span>Bulbs</span>
-            </li>
-            <li className="flex items-center gap-4">
-              <input
-                type="checkbox"
-                checked={checked}
-                className={`checkbox checkbox-success`}
-                onChange={(e) => setChecked(e.target.checked)}
-              />
-              <span>Plants</span>
-            </li>
-            <li className="flex items-center gap-4">
-              <input
-                type="checkbox"
-                checked={checked}
-                className={`checkbox checkbox-success`}
-                onChange={(e) => setChecked(e.target.checked)}
-              />
-              <span>Flowers</span>
-            </li>
+            {categories && categories.length > 0
+              ? categories.map((c, index) => {
+                  return (
+                    <li className="flex items-center gap-4">
+                      <input
+                        type="checkbox"
+                        checked={checkedCategories[index]}
+                        className="checkbox"
+                        onChange={() => handleChange(index)}
+                      />
+                      <span>{c?.spanText}</span>
+                    </li>
+                  );
+                })
+              : null}
           </ul>
           <Divider />
           <h1>Price range</h1>
@@ -80,7 +85,7 @@ const Filter = () => {
                 type="number"
                 name=""
                 id=""
-                placeholder="Min"
+                placeholder="Max"
                 className="rounded-lg border pl-4 w-28 py-3"
               />
             </div>

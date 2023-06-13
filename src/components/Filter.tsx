@@ -83,7 +83,7 @@ const Filter = () => {
             {categories && categories.length > 0
               ? categories.map((c, index) => {
                 return (
-                  <li className="flex items-center gap-4">
+                  <li key={index} className="flex items-center gap-4">
                     <input
                       type="checkbox"
                       checked={checkedCategories[index]}

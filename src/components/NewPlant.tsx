@@ -39,7 +39,7 @@ const NewPlant = () => {
       <img src={img} alt="" className='rounded-xl hidden md:block h-[800px] ' />
       </div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4 w-full md:w-1/3 px-2 mx-auto md:mt-20" >
-        <h1 className="text-center font-semibold text-lg">Add a New Plant</h1>
+        <h1 className="text-center font-semibold text-lg">Add a New Plant 🪴</h1>
         <div className="flex flex-col gap-4 ">
           <label htmlFor="plantName" className="block text-sm md:text-base font-medium text-gray-900 dark:text-white">Plant Name</label>
           <input

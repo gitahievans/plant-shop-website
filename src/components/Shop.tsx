@@ -39,9 +39,9 @@ const Shop = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               ></path>
             </svg>
@@ -54,7 +54,7 @@ const Shop = () => {
             onChange={({ target }) => setValue(target.value)}
           />
         </div>
-        <p>Search results for 'Lily'</p>
+        {value ? <p className='text-base'>Search results for <span className='text-lg font-semibold'>{value}</span> </p> : null}
       </form>
       <details className="md:hidden dropdown z-30">
         <summary className=" btn w-full">Sort</summary>

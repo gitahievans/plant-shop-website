@@ -2,26 +2,36 @@ import React, { useContext, useState } from 'react';
 import { Divider } from '@mantine/core';
 import { Rating } from '@mantine/core';
 import { SideMenuBtnContext } from '../contexts/mobileSideMenuShow';
+import { usePlantsData } from '../hooks/usePlantsData';
+import { FilteredPlantsContext } from '../contexts/filteredPlantsContext';
 
 const Filter = () => {
   const categories = [
     {
-      spanText: 'Gardening',
+      spanText: 'Flowering',
     },
     {
-      spanText: 'Seeds',
+      spanText: 'Foliage',
     },
     {
-      spanText: 'Plants',
+      spanText: 'Low Light',
     },
     {
-      spanText: 'Bulbs',
+      spanText: 'Trailing & Climbing',
     },
     ,
     {
-      spanText: 'Flowers',
+      spanText: 'Succulent',
     },
+    {
+      spanText: 'Prickly'
+    }
   ];
+  const { data } = usePlantsData();
+  const plants = data;
+  const { filteredPlants, setFilteredPlants } = useContext(FilteredPlantsContext)
+  // console.log(plants)
+
   const [value, setValue] = useState(0);
   // we initialize our checkbox state as an array equal to the length of the categories array and set it to false.
   const [checkedCategories, setCheckedCategories] = useState(
@@ -30,12 +40,30 @@ const Filter = () => {
   // the handleChange function take 'index' as a parameter, representing the index of the checked being changed.
 
   const handleChange = (index: number) => {
-    // A new array is created to avoide mutate the original array.
     const newCheckedCategories = [...checkedCategories];
-    // the element at the specified index checked is modified to the oposite state
     newCheckedCategories[index] = !newCheckedCategories[index];
-    setCheckedCategories(newCheckedCategories);
+    setCheckedCategories(newCheckedCategories)
+
+    const filtered = plants?.filter(plant => {
+      // get categories of the plant
+      const plantCategories = plant.category.split(',')
+
+      return plantCategories.some((category) => {
+        // get category defined by the clicked checkbox
+        return newCheckedCategories.some((isChecked, categoryIndex) => {
+          // .some() gooes over each checkbox to find which is selected and sets isChecked for that checkbox to true
+          if (isChecked) {
+            // we use the index of the selected checkbox(es) to get the name of the category associated with it from the categories array
+            return categories[categoryIndex]?.spanText.includes(category)
+          }
+          return false;
+        })
+      })
+    })
+    setFilteredPlants(filtered)
   };
+
+
   const sideMenuBtnContext = useContext(SideMenuBtnContext);
 
   // Accessing the values from the context
@@ -43,9 +71,8 @@ const Filter = () => {
   return (
     <>
       <aside
-        className={`${
-          sideMenuBtnClicked ? 'block' : 'hidden '
-        } md:block  w-72 fixed left-0 z-10 bg-white h-screen `}
+        className={`${sideMenuBtnClicked ? 'block' : 'hidden '
+          } md:block  w-72 fixed left-0 z-10 bg-white h-screen `}
         aria-label="Sidebar"
       >
         <div className="flex flex-col gap-6 h-full px-4 py-4 border  overflow-y-auto bg-gray-50 dark:bg-gray-800">
@@ -55,18 +82,18 @@ const Filter = () => {
             <li>Categories</li>
             {categories && categories.length > 0
               ? categories.map((c, index) => {
-                  return (
-                    <li className="flex items-center gap-4">
-                      <input
-                        type="checkbox"
-                        checked={checkedCategories[index]}
-                        className="checkbox"
-                        onChange={() => handleChange(index)}
-                      />
-                      <span>{c?.spanText}</span>
-                    </li>
-                  );
-                })
+                return (
+                  <li className="flex items-center gap-4">
+                    <input
+                      type="checkbox"
+                      checked={checkedCategories[index]}
+                      className="checkbox"
+                      onChange={() => handleChange(index)}
+                    />
+                    <span>{c?.spanText}</span>
+                  </li>
+                );
+              })
               : null}
           </ul>
           <Divider />

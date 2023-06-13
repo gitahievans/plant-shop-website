@@ -1,24 +1,23 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { usePlantsData } from '../hooks/usePlantsData';
 import PlantCard from './PlantCard';
+import { FilteredPlantsContext } from '../contexts/filteredPlantsContext';
+
 
 const Shop = () => {
   const [value, setValue] = useState('')
   const { data, isLoading } = usePlantsData();
   const plants = data;
-  // console.log(plants);
+  const { filteredPlants } = useContext(FilteredPlantsContext)
 
   let searchedPlants = [];
   if (plants && plants.length > 0) {
     searchedPlants = plants.filter(plant => plant.name.toLowerCase().includes(value.toLocaleLowerCase()));
   }
-  console.log(searchedPlants)
-
 
   if (isLoading) {
     return <div>Loading...</div>
   }
-
 
   return (
     <div className="flex flex-col gap-4 pb-3">
@@ -57,7 +56,7 @@ const Shop = () => {
         </div>
         <p>Search results for 'Lily'</p>
       </form>
-      <details className="md:hidden dropdown">
+      <details className="md:hidden dropdown z-30">
         <summary className=" btn w-full">Sort</summary>
         <ul className="flex flex-col gap-2 p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
           <li>
@@ -95,14 +94,19 @@ const Shop = () => {
       </div>
 
       <div className=" flex flex-col md:flex-row gap-6 items-center flex-wrap">
-        {searchedPlants && searchedPlants.length > 0
+        {filteredPlants && filteredPlants.length > 0 ? (
+          filteredPlants.map((plant) => (
+            <PlantCard key={plant.id} plant={plant} />
+          ))
+        ) : searchedPlants && searchedPlants.length > 0
           ? searchedPlants.map((plant) => {
             return (<PlantCard key={plant.id} plant={plant} />)
           }) :
-          plants && plants.length > 0 ?
-            plants.map((plant) => {
-              return <PlantCard key={plant.id} plant={plant} />
-            }) : <p>No plants</p>
+          plants && plants.length > 0 ? (
+            plants.map((plant) => (
+              <PlantCard key={plant.id} plant={plant} />
+            ))
+          ) : <p>No plants</p>
         }
       </div>
     </div>

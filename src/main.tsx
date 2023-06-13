@@ -5,7 +5,7 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { SideMenuBtnContextProvider } from './contexts/mobileSideMenuShow.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import { FilteredPlantsContextProvider } from './contexts/filteredPlantsContext.tsx';
 
 const queryClient = new QueryClient()
 
@@ -15,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <SideMenuBtnContextProvider>
-          <App />
+          <FilteredPlantsContextProvider>
+            <App />
+          </FilteredPlantsContextProvider>
         </SideMenuBtnContextProvider>
       </QueryClientProvider>
     </BrowserRouter>

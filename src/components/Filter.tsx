@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Divider } from '@mantine/core';
 import { Rating } from '@mantine/core';
 import { SideMenuBtnContext } from '../contexts/mobileSideMenuShow';
@@ -29,7 +29,7 @@ const Filter = () => {
   ];
   const { data } = usePlantsData();
   const plants = data;
-  const { filteredPlants, setFilteredPlants } = useContext(FilteredPlantsContext)
+  const { setFilteredPlants } = useContext(FilteredPlantsContext)
   // console.log(plants)
 
   const [value, setValue] = useState(0);

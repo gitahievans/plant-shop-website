@@ -3,6 +3,15 @@ import { usePlantsData } from '../hooks/usePlantsData';
 import PlantCard from './PlantCard';
 import { FilteredPlantsContext } from '../contexts/filteredPlantsContext';
 
+type Plant = {
+  plantName: string,
+  description: string,
+  category: string,
+  price: number,
+  image: string,
+  rating: number,
+  id?: string, 
+}
 
 const Shop = () => {
   const [value, setValue] = useState('')
@@ -10,7 +19,7 @@ const Shop = () => {
   const plants = data;
   const { filteredPlants } = useContext(FilteredPlantsContext)
 
-  let searchedPlants = [];
+  let searchedPlants: Plant[] = [];
   if (plants && plants.length > 0) {
     searchedPlants = plants.filter(plant => plant.name.toLowerCase().includes(value.toLocaleLowerCase()));
   }
@@ -93,7 +102,7 @@ const Shop = () => {
         </div>
       </div>
 
-      <div className=" flex flex-col md:flex-row gap-6 items-center flex-wrap">
+      <div className=" flex flex-col md:flex-row gap-6 items-center justify-center flex-wrap">
         {filteredPlants && filteredPlants.length > 0 ? (
           filteredPlants.map((plant) => (
             <PlantCard key={plant.id} plant={plant} />

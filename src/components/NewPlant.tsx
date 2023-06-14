@@ -9,7 +9,8 @@ type FormValues = {
   description: string,
   category: string,
   price: number,
-  image: string
+  image: string,
+  id?: string,
 }
 
 const NewPlant = () => {
@@ -17,7 +18,6 @@ const NewPlant = () => {
 
   const form = useForm<FormValues>();
   const { register, handleSubmit, control, formState } = form;
-  const { errors } = formState
 
 
   const onSubmit = async (data: FormValues) => {

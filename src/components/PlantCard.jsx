@@ -36,10 +36,8 @@ function PlantCard({ plant }) {
               Add to cart
             </button>
           }
-
         </div>
       </div>
-
       <img src={Heart} alt="" className='absolute h-6 right-6 top-2 cursor-pointer ' />
     </div>
   );

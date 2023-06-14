@@ -9,7 +9,6 @@ import { FilteredPlantsContextProvider } from './contexts/filteredPlantsContext.
 import { CartContextProvider } from './contexts/CartContext.jsx';
 const queryClient = new QueryClient()
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>

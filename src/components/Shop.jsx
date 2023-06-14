@@ -8,7 +8,7 @@ const Shop = () => {
   const [value, setValue] = useState('')
   const { data, isLoading } = usePlantsData();
   const plants = data;
-  const { filteredPlants } = useContext(FilteredPlantsContext)
+  const { filteredPlants } = useContext(FilteredPlantsContext);
 
 
   let searchedPlants = [];
@@ -97,7 +97,7 @@ const Shop = () => {
       <div className=" flex flex-col md:flex-row gap-6 items-center justify-center flex-wrap">
         {filteredPlants && filteredPlants.length > 0 ? (
           filteredPlants.map((plant) => {
-            <PlantCard key={plant.id} plant={plant} />
+            return <PlantCard key={plant.id} plant={plant} />
           })
         ) : searchedPlants && searchedPlants.length > 0
           ? searchedPlants.map((plant) => {

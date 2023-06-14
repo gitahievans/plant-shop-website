@@ -6,6 +6,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
 import Filter from './components/Filter';
+import Cart from './components/Cart';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/new" element={<NewPlant />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/cart" element={<Cart />} />
           </Route>
         </Routes>
       </main>

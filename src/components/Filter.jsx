@@ -59,6 +59,7 @@ const Filter = () => {
         })
       })
     })
+    // console.log(filtered)
     setFilteredPlants(filtered)
   };
 

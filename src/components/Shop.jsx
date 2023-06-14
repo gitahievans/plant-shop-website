@@ -10,7 +10,8 @@ const Shop = () => {
   const plants = data;
   const { filteredPlants } = useContext(FilteredPlantsContext)
 
-  let searchedPlants= [];
+
+  let searchedPlants = [];
   if (plants && plants.length > 0) {
     searchedPlants = plants.filter(plant => plant.name.toLowerCase().includes(value.toLocaleLowerCase()));
   }
@@ -95,17 +96,17 @@ const Shop = () => {
 
       <div className=" flex flex-col md:flex-row gap-6 items-center justify-center flex-wrap">
         {filteredPlants && filteredPlants.length > 0 ? (
-          filteredPlants.map((plant) => (
+          filteredPlants.map((plant) => {
             <PlantCard key={plant.id} plant={plant} />
-          ))
+          })
         ) : searchedPlants && searchedPlants.length > 0
           ? searchedPlants.map((plant) => {
             return (<PlantCard key={plant.id} plant={plant} />)
           }) :
           plants && plants.length > 0 ? (
-            plants.map((plant) => (
+            plants.map((plant) => {
               <PlantCard key={plant.id} plant={plant} />
-            ))
+            })
           ) : <p>No plants</p>
         }
       </div>

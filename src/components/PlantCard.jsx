@@ -25,14 +25,14 @@ function PlantCard({ plant }) {
               onClick={() => {
                 setCart(cart.filter((p) => p.id !== plant.id))
               }}
-              className="text-lg px-6 py-2 hover:shadow-lg hover:text-[#2a2a2a] hover:bg-[#47a358] rounded-xl font-medium transition-all ease-in-out duration-500 border">
+              className="text-lg text-white hover:bg-green-950 bg-[#47a358] px-6 py-2 hover:shadow-lg rounded-xl font-medium transition-all ease-in-out duration-500 border">
               Remove from cart
             </button> :
             <button
               onClick={() => {
                 setCart([...cart, plant])
               }}
-              className="text-lg px-6 py-2 hover:shadow-lg hover:text-[#2a2a2a] hover:bg-[#47a358] rounded-xl font-medium transition-all ease-in-out duration-500 border">
+              className="text-lg text-white px-6 py-2 hover:shadow-lg  hover:bg-green-950 bg-[#47a358] rounded-xl font-medium transition-all ease-in-out duration-500 border">
               Add to cart
             </button>
           }

@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { usePlantsData } from "../hooks/usePlantsData";
 
-export const FilteredPlantsContext = createContext();
+export const FilteredPlantsContext = createContext(null);
 
 export const FilteredPlantsContextProvider = ({ children }) => {
     const { data } = usePlantsData();

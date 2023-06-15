@@ -59,6 +59,7 @@ const Filter = () => {
         })
       })
     })
+    // console.log(filtered)
     setFilteredPlants(filtered)
   };
 
@@ -74,7 +75,7 @@ const Filter = () => {
           } md:block  w-72 fixed left-0 z-10 bg-white h-screen `}
         aria-label="Sidebar"
       >
-        <div className="flex flex-col gap-6 h-full px-4 py-4 border  overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="flex flex-col gap-6 h-full px-4 py-4 border overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <h1>Filter</h1>
           <Divider />
           <ul className="flex flex-col gap-6">
@@ -96,46 +97,47 @@ const Filter = () => {
               : null}
           </ul>
           <Divider />
-          <h1>Price range</h1>
-          <div className="flex flex-col gap-4">
-            {' '}
-            <div className="flex justify-between">
-              <input
-                type="number"
-                name=""
-                id=""
-                placeholder="Min"
-                className="rounded-lg border pl-4 w-28 py-3"
-              />
-              <input
-                type="number"
-                name=""
-                id=""
-                placeholder="Max"
-                className="rounded-lg border pl-4 w-28 py-3"
-              />
+          <div className='flex flex-col gap-2'>
+            <h1>Price range</h1>
+            <div className="flex flex-col gap-4">
+              {' '}
+              <div className="flex justify-between">
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  placeholder="Min"
+                  className="rounded-lg border pl-4 w-28 py-3"
+                />
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  placeholder="Max"
+                  className="rounded-lg border pl-4 w-28 py-3"
+                />
+              </div>
+              <button className="btn bg-[#47a358] rounded-xl px-4 text-white hover:text-[#47a358]">
+                Set Price
+              </button>
             </div>
-            <button className="btn bg-[#47a358] rounded-xl px-4 text-white hover:text-[#47a358]">
-              Set Price
-            </button>
           </div>
           <Divider />
-          <h1>Rating</h1>
-          <Rating fractions={2} value={value} onChange={setValue} size="xl" />
+          <div className='flex flex-col gap-2'>
+            <h1>Rating</h1>
+            <Rating fractions={2} value={value} onChange={setValue} size="xl" />
+          </div>
 
           <div
-            id="dropdown-cta"
-            className="flex flex-col p-2 rounded-lg text-white relative h-56"
+            className="hidden md:block relative h-40 rounded-lg"
           >
-            <div className="bg-img rounded-xl"></div>
-            <div className="flex flex-col gap-4 no-blur">
+            <div className='bg-img'></div>
+            <div className="no-blur text-white flex flex-col gap-2 font-semibold absolute md:top-1/2 md:left-1/2 z-10 w-[90%] md:-translate-x-1/2 md:-translate-y-1/2">
               <h1 className="text-xl">GET 30% OFF</h1>
               <p>Share your referral code and get discount</p>
               <button
                 type="button"
-                className=" rounded-xl bg-[#ffc327] px-8 py-2 self-center text-black btn "
-                data-dismiss-target="#dropdown-cta"
-                aria-label="Close"
+                className=" rounded-xl bg-[#ffc327] px-8 py-2 self-center text-black btn w-4/5"
               >
                 Share
               </button>

@@ -6,9 +6,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { SideMenuBtnContextProvider } from './contexts/mobileSideMenuShow.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { FilteredPlantsContextProvider } from './contexts/filteredPlantsContext.jsx';
-
+import { CartContextProvider } from './contexts/CartContext.jsx';
 const queryClient = new QueryClient()
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <QueryClientProvider client={queryClient}>
         <SideMenuBtnContextProvider>
           <FilteredPlantsContextProvider>
-            <App />
+            <CartContextProvider>
+              <App />
+            </CartContextProvider>
           </FilteredPlantsContextProvider>
         </SideMenuBtnContextProvider>
       </QueryClientProvider>

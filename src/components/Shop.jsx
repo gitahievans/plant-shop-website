@@ -8,9 +8,10 @@ const Shop = () => {
   const [value, setValue] = useState('')
   const { data, isLoading } = usePlantsData();
   const plants = data;
-  const { filteredPlants } = useContext(FilteredPlantsContext)
+  const { filteredPlants } = useContext(FilteredPlantsContext);
 
-  let searchedPlants= [];
+
+  let searchedPlants = [];
   if (plants && plants.length > 0) {
     searchedPlants = plants.filter(plant => plant.name.toLowerCase().includes(value.toLocaleLowerCase()));
   }
@@ -20,8 +21,8 @@ const Shop = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 pb-3">
-      <form className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4 pb-3 relative">
+      <form className="flex flex-col gap-2 sticky top-[65px] md:top-[75px] z-30">
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -95,17 +96,17 @@ const Shop = () => {
 
       <div className=" flex flex-col md:flex-row gap-6 items-center justify-center flex-wrap">
         {filteredPlants && filteredPlants.length > 0 ? (
-          filteredPlants.map((plant) => (
-            <PlantCard key={plant.id} plant={plant} />
-          ))
+          filteredPlants.map((plant) => {
+            return <PlantCard key={plant.id} plant={plant} />
+          })
         ) : searchedPlants && searchedPlants.length > 0
           ? searchedPlants.map((plant) => {
             return (<PlantCard key={plant.id} plant={plant} />)
           }) :
           plants && plants.length > 0 ? (
-            plants.map((plant) => (
+            plants.map((plant) => {
               <PlantCard key={plant.id} plant={plant} />
-            ))
+            })
           ) : <p>No plants</p>
         }
       </div>

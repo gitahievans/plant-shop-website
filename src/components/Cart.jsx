@@ -14,7 +14,7 @@ const Cart = () => {
             <div className=" mx-auto justify-center flex flex-col items-center lg:flex-row gap-4 relative">
                 <div className="flex flex-col gap-4 rounded-lg md:w-full">
                     {cart && cart.length > 0 ?
-                        cart.map(cartItem => <CartCard key={cartItem.id} cartItem={cartItem} />) : <p>No cart Items</p>
+                        cart.map(cartItem => <CartCard key={cartItem.id} cartItem={cartItem} />) : <p className='text-2xl self-center'>No cart Items</p>
                     }
                 </div>
                 {/* <!-- Sub total --> */}

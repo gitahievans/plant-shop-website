@@ -1,24 +1,25 @@
-import { useState, useRef, useContext, useEffect } from 'react'
+/* eslint-disable react/prop-types */
+import { useState, useContext, useEffect } from 'react'
 import { NumberInput, Group, ActionIcon, rem } from '@mantine/core';
 import { CartContext } from '../contexts/CartContext';
 
 const CartCard = ({ cartItem }) => {
     const { cartTotal, setCartTotal } = useContext(CartContext)
     const [value, setValue] = useState(1);
-    const [price, setPrice] = useState(parseFloat(cartItem?.price));
-    const handlers = useRef();
+    const itemPrice = cartItem.price
+    const [price, setPrice] = useState(parseFloat(itemPrice));
 
     useEffect(() => {
-        const itemTotal = parseFloat(cartItem?.price) * value;
+        const itemTotal = parseFloat(itemPrice) * value;
         setPrice(itemTotal);
-    }, [cartItem?.price, value]);
+    }, [itemPrice, value]);
 
     const handleIncrement = () => {
         setValue((prev) => prev + 1)
     };
 
     const handleDecrement = () => {
-        if (value > 0) {
+        if (value > 1) {
             setValue((prevValue) => prevValue - 1);
         }
     };
@@ -40,12 +41,7 @@ const CartCard = ({ cartItem }) => {
                     </ActionIcon>
                     <NumberInput
                         hideControls
-                        value={value}
-                        onChange={(val) => setValue(val)}
-                        handlersRef={handlers}
-                        max={10}
-                        min={1}
-                        step={2}
+                        value={value || 1}
                         styles={{ input: { width: rem(54), textAlign: 'center' } }}
                     />
                     <ActionIcon size={42} variant="default" onClick={handleIncrement}>

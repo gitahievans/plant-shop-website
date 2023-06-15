@@ -72,10 +72,10 @@ const Filter = () => {
     <>
       <aside
         className={`${sideMenuBtnClicked ? 'block' : 'hidden '
-          } md:block  w-72 fixed left-0 z-10 bg-white h-screen `}
+          } md:block w-72 fixed left-0 z-50 bg-white h-screen`}
         aria-label="Sidebar"
       >
-        <div className="flex flex-col gap-6 h-full px-4 py-4 border overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="flex flex-col gap-4 h-full px-4 py-2 border overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <h1>Filter</h1>
           <Divider />
           <ul className="flex flex-col gap-6">
@@ -125,23 +125,7 @@ const Filter = () => {
           <Divider />
           <div className='flex flex-col gap-2'>
             <h1>Rating</h1>
-            <Rating fractions={2} value={value} onChange={setValue} size="xl" />
-          </div>
-
-          <div
-            className="hidden md:block relative h-40 rounded-lg"
-          >
-            <div className='bg-img'></div>
-            <div className="no-blur text-white flex flex-col gap-2 font-semibold absolute md:top-1/2 md:left-1/2 z-10 w-[90%] md:-translate-x-1/2 md:-translate-y-1/2">
-              <h1 className="text-xl">GET 30% OFF</h1>
-              <p>Share your referral code and get discount</p>
-              <button
-                type="button"
-                className=" rounded-xl bg-[#ffc327] px-8 py-2 self-center text-black btn w-4/5"
-              >
-                Share
-              </button>
-            </div>
+            <Rating fractions={2} value={value} onChange={setValue} size='lg' />
           </div>
         </div>
       </aside>

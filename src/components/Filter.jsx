@@ -72,10 +72,10 @@ const Filter = () => {
     <>
       <aside
         className={`${sideMenuBtnClicked ? 'block' : 'hidden '
-          } md:block  w-72 fixed left-0 z-50 bg-white h-screen`}
+          } md:block w-72 fixed left-0 z-50 bg-white h-screen`}
         aria-label="Sidebar"
       >
-        <div className="flex flex-col gap-4 h-full px-4 py-2 border overflow-y-scroll bg-gray-50 dark:bg-gray-800">
+        <div className="flex flex-col gap-4 h-full px-4 py-2 border overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <h1>Filter</h1>
           <Divider />
           <ul className="flex flex-col gap-6">

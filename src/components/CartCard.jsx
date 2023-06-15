@@ -1,9 +1,28 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef, useContext, useEffect } from 'react'
 import { NumberInput, Group, ActionIcon, rem } from '@mantine/core';
+import { CartContext } from '../contexts/CartContext';
 
 const CartCard = ({ cartItem }) => {
-    const [value, setValue] = useState(0);
+    const { cartTotal, setCartTotal } = useContext(CartContext)
+    const [value, setValue] = useState(1);
+    const [price, setPrice] = useState(parseFloat(cartItem?.price));
     const handlers = useRef();
+
+    useEffect(() => {
+        const itemTotal = parseFloat(cartItem?.price) * value;
+        setPrice(itemTotal);
+    }, [cartItem?.price, value]);
+
+    const handleIncrement = () => {
+        setValue((prev) => prev + 1)
+    };
+
+    const handleDecrement = () => {
+        if (value > 0) {
+            setValue((prevValue) => prevValue - 1);
+        }
+    };
+
     return (
         <div className="flex flex-col items-center justify-between md:flex-row gap-3 pb-4 max-w-[320px] md:max-w-6xl bg-white hover:bg-slate-50 md:p-8 rounded-2xl hover:shadow-2xl transition ease-in-out duration-500 border relative">
             <img src={cartItem?.image} alt="imge" className='md:w-1/2 w-full h-72 object-cover rounded-xl' />
@@ -12,11 +31,11 @@ const CartCard = ({ cartItem }) => {
                     <h2 className="md:text-lg font-semibold">{cartItem?.name}</h2>
                     <div className="flex items-center gap-2">
                         <p>Price: </p>
-                        <p>${cartItem?.price}</p>
+                        <p>$ {price}</p>
                     </div>
                 </div>
                 <Group spacing={5}>
-                    <ActionIcon size={42} variant="default" onClick={() => handlers.current.decrement()}>
+                    <ActionIcon size={42} variant="default" onClick={handleDecrement}>
                         –
                     </ActionIcon>
                     <NumberInput
@@ -25,11 +44,11 @@ const CartCard = ({ cartItem }) => {
                         onChange={(val) => setValue(val)}
                         handlersRef={handlers}
                         max={10}
-                        min={0}
+                        min={1}
                         step={2}
                         styles={{ input: { width: rem(54), textAlign: 'center' } }}
                     />
-                    <ActionIcon size={42} variant="default" onClick={() => handlers.current.increment()}>
+                    <ActionIcon size={42} variant="default" onClick={handleIncrement}>
                         +
                     </ActionIcon>
                 </Group>

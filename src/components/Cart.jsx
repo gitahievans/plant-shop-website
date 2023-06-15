@@ -4,8 +4,9 @@ import { CartContext } from '../contexts/CartContext'
 
 
 const Cart = () => {
-    const { cart, setCart } = useContext(CartContext)
-    const cost = cart.map(c => parseInt(c.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    const { cart } = useContext(CartContext);
+    const { cartTotal } = useContext(CartContext);
+    // const cost = cart.map(c => parseInt(c.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
     const shipping = 4.99;
     return (
         <div className="py-10">
@@ -20,7 +21,7 @@ const Cart = () => {
                 <div className="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0 lg:w-1/3 lg:self-start lg:mr-20 w-full lg:sticky lg:right-0 lg:top-20 lg:bottom-16">
                     <div className="mb-2 flex justify-between">
                         <p className="text-gray-700">Subtotal</p>
-                        <p className="text-gray-700">$ {cost}</p>
+                        <p className="text-gray-700">$ {cartTotal}</p>
                     </div>
                     <div className="flex justify-between">
                         <p className="text-gray-700">Shipping</p>
@@ -30,7 +31,7 @@ const Cart = () => {
                     <div className="flex justify-between">
                         <p className="text-lg font-bold">Total</p>
                         <div className="">
-                            {cost ? <p className="mb-1 text-lg font-bold">$ {cost - shipping}</p> : <p className="mb-1 text-lg font-bold">$ 0</p>}
+                            {cartTotal ? <p className="mb-1 text-lg font-bold">$ {cartTotal - shipping}</p> : <p className="mb-1 text-lg font-bold">$ 0</p>}
                             <p className="text-sm text-gray-700">including VAT</p>
                         </div>
                     </div>

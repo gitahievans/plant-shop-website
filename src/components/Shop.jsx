@@ -21,8 +21,8 @@ const Shop = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 pb-3">
-      <form className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4 pb-3 relative">
+      <form className="flex flex-col gap-2 sticky top-[65px] md:top-[75px] z-30">
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"

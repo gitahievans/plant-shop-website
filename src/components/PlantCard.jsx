@@ -18,14 +18,14 @@ function PlantCard({ plant }) {
         <div className="flex justify-between ">
           <div className="flex items-center gap-2">
             <p>Price: </p>
-            <p>${plant?.price}</p>
+            <p>$ {plant?.price}</p>
           </div>
           {cart.includes(plant) ?
             <button
               onClick={() => {
                 setCart(cart.filter((p) => p.id !== plant.id))
               }}
-              className="text-lg text-white hover:bg-green-950 bg-[#47a358] px-6 py-2 hover:shadow-lg rounded-xl font-medium transition-all ease-in-out duration-500 border">
+              className="text-lg text-white hover:bg-green-950 bg-[#006112] px-6 py-2 hover:shadow-lg rounded-xl font-medium transition-all ease-in-out duration-500 border">
               Remove from cart
             </button> :
             <button

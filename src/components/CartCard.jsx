@@ -32,7 +32,7 @@ const CartCard = ({ cartItem }) => {
                     <h2 className="md:text-lg font-semibold">{cartItem?.name}</h2>
                     <div className="flex items-center gap-2">
                         <p>Price: </p>
-                        <p>$ {price}</p>
+                        <p className='text-green-900 font-semibold'>$ {price}</p>
                     </div>
                 </div>
                 <Group spacing={5}>

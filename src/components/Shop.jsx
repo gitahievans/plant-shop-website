@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { usePlantsData } from '../hooks/usePlantsData';
 import PlantCard from './PlantCard';
 import { FilteredPlantsContext } from '../contexts/filteredPlantsContext';
+import { Loader } from '@mantine/core';
 
 
 const Shop = () => {
@@ -17,7 +18,10 @@ const Shop = () => {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div className='flex items-center gap-8 md:ml-[40%] ml-[22%] mt-[25%]'>
+      <p className='text-2xl'>Planting 🪴</p>
+      <Loader variant='bars' size='md' color='green'/>
+    </div>
   }
 
   return (

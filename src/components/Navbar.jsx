@@ -42,13 +42,13 @@ const Navbar = () => {
           <img
             src="https://media.licdn.com/dms/image/C4D0BAQFp8rS9GGBjOg/company-logo_200_200/0/1624400083492?e=1694044800&v=beta&t=MpusRa2YbrI2W_GuUBvG6FxyH_bNtGEt3dDdjUExEJs"
             alt="icon"
-            className="h-10"
+            className="h-8 md:h-10"
           />
-          <a className="btn btn-ghost normal-case text-xl">
+          <a className="btn btn-ghost normal-case text-lg md:text-xl">
             <p>GREEN</p>
-            <span className='animate-bounce'>🌲</span>
+            <span className='animate-bounce text-sm'>🌲</span>
             <p>ROOM</p>
-            <span className='animate-bounce'>🌱 </span> </a>
+            <span className='animate-bounce text-sm'>🌱 </span> </a>
         </div>
         <div className="hidden md:flex items-center gap-10">
           <NavLink
@@ -104,7 +104,7 @@ const Navbar = () => {
             <div className="indicator">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-8 w-8"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -116,7 +116,7 @@ const Navbar = () => {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              <span className="badge badge-sm indicator-item animate-pulse">
+              <span className="text-red-700 text-base badge badge-sm indicator-item ">
                 {cart.length}
               </span>
             </div>

@@ -47,6 +47,7 @@ const Navbar = () => {
           <a className="btn btn-ghost normal-case text-lg md:text-xl">
             <p>GREEN</p>
             <span className='animate-bounce text-sm'>🌲</span>
+            <p>ROOM</p>
             <span className='animate-bounce text-sm'>🌱 </span> </a>
         </div>
         <div className="hidden md:flex items-center gap-10 text-md">

@@ -5,7 +5,7 @@ import { useContext } from 'react';
 
 function PlantCard({ plant }) {
   const { cart, setCart } = useContext(CartContext)
-
+  const plantInCart = cart.some((item) => item.id === plant.id)
   return (
     <div className=" flex flex-col gap-3 max-w-[320px] md:max-w-sm bg-white pb-2 rounded-2xl hover:shadow-xl transition ease-in-out duration-500 border relative overflow-hidden w-96">
       <img src={plant?.image} alt="imge" className='h-96  object-cover ' />
@@ -19,22 +19,19 @@ function PlantCard({ plant }) {
             <p>Price: </p>
             <p>$ {plant?.price}</p>
           </div>
-          {cart.includes(plant) ?
-            <button
-              onClick={() => {
-                setCart(cart.filter((p) => p.id !== plant.id))
-              }}
-              className="text-lg text-white hover:bg-green-950 bg-[#006112] px-6 py-2 hover:shadow-lg rounded-xl font-medium transition-all ease-in-out duration-500 border">
-              Remove from cart
-            </button> :
-            <button
-              onClick={() => {
+          <button
+            onClick={() => {
+              if (plantInCart) {
+                setCart(cart.filter((p) => p.id !== plant.id));
+              } else {
                 setCart([...cart, plant])
-              }}
-              className="text-lg text-white px-6 py-2 hover:shadow-lg  hover:bg-green-950 bg-[#47a358] rounded-xl font-medium transition-all ease-in-out duration-500 border">
-              Add to cart
-            </button>
-          }
+              }
+            }
+            }
+            className={`text-lg text-white px-6 py-2 hover:shadow-lg rounded-xl font-medium transition-all ease-in-out duration-500 border ${plantInCart ? 'bg-[#2e5234]' : 'bg-[#47a358]'
+              }`}>
+            {plantInCart ? 'Remove from Cart' : 'Add to cart'}
+          </button>
         </div>
       </div>
       <img src={Heart} alt="" className='absolute h-6 right-6 top-2 cursor-pointer ' />

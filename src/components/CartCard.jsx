@@ -37,7 +37,7 @@ const CartCard = ({ cartItem }) => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-between md:flex-row gap-3 pb-4 max-w-[360px] md:max-w-6xl bg-white hover:bg-slate-50 md:p-8 rounded-2xl hover:shadow-2xl transition ease-in-out duration-500 border relative">
+        <div className="flex flex-col items-center justify-between md:flex-row gap-3 pb-4 max-w-[360px] md:max-w-4xl bg-white hover:bg-slate-50 md:p-8 rounded-2xl hover:shadow-2xl transition ease-in-out duration-500 border relative">
             <img src={cartItem?.image} alt="imge" className='md:w-1/2 w-full h-72 object-cover rounded-xl' />
             <div className='w-full md:w-1/3 px-3 flex flex-col gap-3'>
                 <div className='flex flex-col flex-wrap gap-2'>

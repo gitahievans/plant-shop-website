@@ -30,8 +30,9 @@ const Filter = () => {
   const plants = data;
   const { setFilteredPlants } = useContext(FilteredPlantsContext)
   const [rating, setRating] = useState(0)
-  // console.log(rating)
-  // console.log(plants)
+  const [minPrice, setMinPrice] = useState();
+  const [maxPrice, setMaxPrice] = useState();
+
   // we initialize our checkbox state as an array equal to the length of the categories array and set it to false.
   const [checkedCategories, setCheckedCategories] = useState(
     categories.map(() => false)
@@ -75,9 +76,28 @@ const Filter = () => {
     ratingFilter()
   }, [rating])
 
+  const handleMinPriceChange = (e) => {
+    setMinPrice(e.target.value)
+  };
+
+  const handleMaxPriceChange = (e) => {
+    setMaxPrice(e.target.value)
+  };
+
+  const handleSetPrice = (e) => {
+    const priceFiltered = plants?.filter((plant) => {
+      return (
+        plant.price >= minPrice && plant.price <= maxPrice
+      )
+    });
+    setFilteredPlants(priceFiltered)
+  };
+
   const sideMenuBtnContext = useContext(SideMenuBtnContext);
 
   const sideMenuBtnClicked = sideMenuBtnContext?.sideMenuBtnClicked;
+
+
   return (
     <>
       <aside
@@ -114,20 +134,26 @@ const Filter = () => {
               <div className="flex justify-between">
                 <input
                   type="number"
+                  value={minPrice}
                   name=""
                   id=""
                   placeholder="Min"
                   className="rounded-lg border pl-4 w-28 py-3"
+                  onChange={handleMinPriceChange}
                 />
                 <input
                   type="number"
+                  value={maxPrice}
                   name=""
                   id=""
                   placeholder="Max"
                   className="rounded-lg border pl-4 w-28 py-3"
+                  onChange={handleMaxPriceChange}
                 />
               </div>
-              <button className="btn bg-[#47a358] rounded-xl px-4 text-white hover:text-[#47a358]">
+              <button type='button'
+                onClick={handleSetPrice}
+                className="btn bg-[#47a358] rounded-xl px-4 text-white hover:text-[#47a358]">
                 Set Price
               </button>
             </div>

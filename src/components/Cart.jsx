@@ -14,7 +14,7 @@ const Cart = () => {
 
     const shipping = 4.99;
     return (
-        <div className="py-10">
+        <div className="md:py-10">
             <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
             <div className="mx-auto flex flex-col items-center lg:flex-row gap-4 relative">
                 <div className="flex flex-col gap-4 rounded-lg md:w-full">

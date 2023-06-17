@@ -7,6 +7,7 @@ import { SideMenuBtnContextProvider } from './contexts/mobileSideMenuShow.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { FilteredPlantsContextProvider } from './contexts/filteredPlantsContext.jsx';
 import { CartContextProvider } from './contexts/CartContext.jsx';
+import { PlantDetailsContextProvider } from './contexts/PlantDetailsContext.jsx';
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <SideMenuBtnContextProvider>
           <FilteredPlantsContextProvider>
             <CartContextProvider>
-              <App />
+              <PlantDetailsContextProvider>
+                <App />
+              </PlantDetailsContextProvider>
             </CartContextProvider>
           </FilteredPlantsContextProvider>
         </SideMenuBtnContextProvider>

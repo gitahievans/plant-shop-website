@@ -55,7 +55,7 @@ const Navbar = () => {
             to="."
             className={({ isActive }) =>
               isActive
-                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-[#9A4B9C] py-7'
+                ? 'text-violet-700 h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-violet-700 py-7'
                 : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
             }
             end
@@ -66,7 +66,7 @@ const Navbar = () => {
             to="/new"
             className={({ isActive }) =>
               isActive
-                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-[#9A4B9C] py-7'
+                ? 'text-violet-700 h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-violet-700 py-7'
                 : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
             }
             end

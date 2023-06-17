@@ -23,7 +23,7 @@ const Cart = () => {
                     }
                 </div>
                 {/* <!-- Sub total --> */}
-                <div className="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0 lg:w-1/2 md:self-start w-full lg:sticky md:right-0 md:top-20 md:bottom-16">
+                <div className="rounded-lg border bg-white p-6 shadow-md md:mt-0 lg:w-1/2 md:self-start w-full lg:sticky md:right-0 md:top-20 md:bottom-16">
                     <div className="mb-2 flex justify-between">
                         <p className="text-gray-700">Toatal Items</p>
                         <p className="text-gray-700"> {cartTotalQuantity}</p>

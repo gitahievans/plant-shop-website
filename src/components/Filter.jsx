@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Divider } from '@mantine/core';
 import { Rating } from '@mantine/core';
 import { SideMenuBtnContext } from '../contexts/mobileSideMenuShow';
@@ -29,9 +29,9 @@ const Filter = () => {
   const { data } = usePlantsData();
   const plants = data;
   const { setFilteredPlants } = useContext(FilteredPlantsContext)
+  const [rating, setRating] = useState(0)
+  // console.log(rating)
   // console.log(plants)
-
-  const [value, setValue] = useState(0);
   // we initialize our checkbox state as an array equal to the length of the categories array and set it to false.
   const [checkedCategories, setCheckedCategories] = useState(
     categories.map(() => false)
@@ -63,10 +63,20 @@ const Filter = () => {
     setFilteredPlants(filtered)
   };
 
+  const ratingFilter = () => {
+    if (plants && plants.length) {
+      const ratingFiltered = plants.map((plant => plant)).filter(plant => plant.rating === rating);
+      // console.log(ratingFiltered)
+      setFilteredPlants(ratingFiltered);
+    }
+  };
+
+  useEffect(() => {
+    ratingFilter()
+  }, [rating])
 
   const sideMenuBtnContext = useContext(SideMenuBtnContext);
 
-  // Accessing the values from the context
   const sideMenuBtnClicked = sideMenuBtnContext?.sideMenuBtnClicked;
   return (
     <>
@@ -125,7 +135,7 @@ const Filter = () => {
           <Divider />
           <div className='flex flex-col gap-2'>
             <h1>Rating</h1>
-            <Rating fractions={2} value={value} onChange={setValue} size='lg' />
+            <Rating fractions={2} value={rating} onChange={setRating} size='lg' color="violet" />
           </div>
         </div>
       </aside>

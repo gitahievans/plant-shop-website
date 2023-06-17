@@ -12,7 +12,7 @@ function PlantCard({ plant }) {
       <div className='px-3 flex flex-col gap-3'>
         <h2 className="text-2xl font-semibold">{plant?.name}</h2>
         <div className='flex gap-2 items-center text-base'>
-          <Rating fractions={2} size="xl" value={plant?.rating} /> {plant?.rating}
+          <Rating fractions={2} size="lg" value={plant?.rating} readOnly /> {plant?.rating}
         </div>
         <div className="flex justify-between ">
           <div className="flex items-center gap-2">

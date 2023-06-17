@@ -15,7 +15,7 @@ const Navbar = () => {
   const cost = cart.map(c => parseInt(c.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 
   return (
-    <div className="navbar fixed top-0 flex justify-between  border-b max-w-[360px] md:max-w-full bg-white z-50">
+    <nav className="navbar fixed top-0 flex justify-between  border-b max-w-[360px] md:max-w-full bg-white z-50">
       <button
         type="button"
         className="inline-flex items-center p-2 mt-2 mr-8 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 "
@@ -73,7 +73,7 @@ const Navbar = () => {
           >
             Add New
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to="/about"
             className={({ isActive }) =>
               isActive
@@ -94,7 +94,7 @@ const Navbar = () => {
             end
           >
             Contact Us
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
 
@@ -206,7 +206,7 @@ const Navbar = () => {
                 Add New
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to="/about"
                 className={({ isActive }) =>
@@ -218,7 +218,7 @@ const Navbar = () => {
               >
                 About Us
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </button>
         <div className="dropdown dropdown-end hidden md:block">
@@ -246,7 +246,7 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

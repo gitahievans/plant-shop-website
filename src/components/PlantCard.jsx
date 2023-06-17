@@ -14,7 +14,6 @@ function PlantCard({ plant }) {
         <div className='flex gap-2 items-center text-base'>
           <Rating fractions={2} size="xl" value={plant?.rating} /> {plant?.rating}
         </div>
-
         <div className="flex justify-between ">
           <div className="flex items-center gap-2">
             <p>Price: </p>

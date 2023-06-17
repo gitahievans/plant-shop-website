@@ -4,24 +4,35 @@ import { NumberInput, Group, ActionIcon, rem } from '@mantine/core';
 import { CartContext } from '../contexts/CartContext';
 
 const CartCard = ({ cartItem }) => {
-    const { cartTotal, setCartTotal } = useContext(CartContext)
-    const [value, setValue] = useState(1);
-    const itemPrice = cartItem.price
-    const [price, setPrice] = useState(parseFloat(itemPrice));
-    const { cart, setCart } = useContext(CartContext);
+    const [value, setValue] = useState(0);
+    const { cartTotalAmount, cartTotalQuantity, setCartTotalAmount, cart, setCart, setCartTotalQuantity } = useContext(CartContext);
 
-    useEffect(() => {
-        const itemTotal = parseFloat(itemPrice) * value;
-        setPrice(itemTotal);
-    }, [itemPrice, value]);
 
     const handleIncrement = () => {
-        setValue((prev) => prev + 1)
+        setValue((prevValue) => prevValue + 1);
+        setCart((prevCart) => {
+            const updatedCart = prevCart.map((item) => {
+                if (item.id === cartItem.id) {
+                    return { ...item, quantity: item.quantity + 1 };
+                }
+                return item;
+            });
+            return updatedCart;
+        });
     };
 
     const handleDecrement = () => {
-        if (value > 1) {
+        if (value > 0) {
             setValue((prevValue) => prevValue - 1);
+            setCart((prevCart) => {
+                const updatedCart = prevCart.map((item) => {
+                    if (item.id === cartItem.id) {
+                        return { ...item, quantity: item.quantity - 1 };
+                    }
+                    return item;
+                });
+                return updatedCart;
+            });
         }
     };
 
@@ -33,17 +44,17 @@ const CartCard = ({ cartItem }) => {
                     <h2 className="md:text-lg font-semibold">{cartItem?.name}</h2>
                     <div className="flex items-center gap-2">
                         <p>Price: </p>
-                        <p className='text-green-900 font-semibold'>$ {price}</p>
+                        <p className='text-green-900 font-semibold'>${cartItem.price * cartItem.quantity}</p>
                     </div>
                 </div>
                 <div className='flex items-center justify-between flex-wrap gap-3'>
                     <Group spacing={2}>
-                        <ActionIcon size={30} variant="default" onClick={handleDecrement}>
+                        <ActionIcon size={30} variant='default' onClick={handleDecrement}>
                             –
                         </ActionIcon>
                         <NumberInput
                             hideControls
-                            value={value || 1}
+                            value={cartItem.quantity}
                             styles={{ input: { width: rem(35), textAlign: 'center' } }}
                         />
                         <ActionIcon size={30} variant="default" onClick={handleIncrement}>
@@ -52,7 +63,7 @@ const CartCard = ({ cartItem }) => {
                     </Group>
                     <button
                         onClick={() => {
-                            setCart(cart.filter((p) => p.id !== cartItem.id))
+                            setCart(cart.filter((p) => p.id !== cartItem.id));
                         }}
                         className="text-base text-white hover:bg-green-950 bg-[#006112] px-6 py-2 hover:shadow-lg rounded-xl font-medium transition-all ease-in-out duration-500 border">
                         Remove

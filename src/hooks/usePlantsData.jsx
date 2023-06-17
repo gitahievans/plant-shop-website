@@ -6,7 +6,7 @@ const plantsCollenctionRef = collection(db, 'plants');
 
 const getPlants = async () => {
     const response = await getDocs(plantsCollenctionRef);
-    const data = response.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    const data = response.docs.map((doc) => ({ ...doc.data(), id: doc.id, quantity: 1 }));
     return data;
 };
 

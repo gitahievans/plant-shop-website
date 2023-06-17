@@ -1,12 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import CartCard from './CartCard'
 import { CartContext } from '../contexts/CartContext'
 
 
 const Cart = () => {
-    const { cart } = useContext(CartContext);
-    const { cartTotal } = useContext(CartContext);
-    // const cost = cart.map(c => parseInt(c.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    const { cartTotalAmount, cartTotalQuantity, setCartTotalAmount, cart, setCartTotalQuantity } = useContext(CartContext);
+
+    useEffect(() => {
+        setCartTotalAmount(cart.map((item) => item).reduce((acc, curr) => acc + (curr.price) * (curr.quantity), 0));
+
+        setCartTotalQuantity(cart.map((item) => item).reduce((acc, curr) => acc + curr.quantity, 0))
+    }, [cart]);
+
     const shipping = 4.99;
     return (
         <div className="py-10">
@@ -20,8 +25,12 @@ const Cart = () => {
                 {/* <!-- Sub total --> */}
                 <div className="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0 lg:w-1/3 lg:self-start lg:mr-20 w-full lg:sticky lg:right-0 lg:top-20 lg:bottom-16">
                     <div className="mb-2 flex justify-between">
+                        <p className="text-gray-700">Toatal Items</p>
+                        <p className="text-gray-700"> {cartTotalQuantity}</p>
+                    </div>
+                    <div className="mb-2 flex justify-between">
                         <p className="text-gray-700">Subtotal</p>
-                        <p className="text-gray-700">$ {cartTotal}</p>
+                        <p className="text-gray-700">$ {cartTotalAmount}</p>
                     </div>
                     <div className="flex justify-between">
                         <p className="text-gray-700">Shipping</p>
@@ -31,7 +40,7 @@ const Cart = () => {
                     <div className="flex justify-between">
                         <p className="text-lg font-bold">Total</p>
                         <div className="">
-                            {cartTotal ? <p className="mb-1 text-lg font-bold">$ {cartTotal - shipping}</p> : <p className="mb-1 text-lg font-bold">$ 0</p>}
+                            {cartTotalAmount ? <p className="mb-1 text-lg font-bold">$ {cartTotalAmount - shipping}</p> : <p className="mb-1 text-lg font-bold">$ 0</p>}
                             <p className="text-sm text-gray-700">including VAT</p>
                         </div>
                     </div>

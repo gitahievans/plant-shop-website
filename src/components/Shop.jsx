@@ -19,8 +19,8 @@ const Shop = () => {
 
   if (isLoading) {
     return <div className='flex items-center gap-8 md:ml-[40%] ml-[22%] mt-[25%]'>
-      <p className='text-2xl'>Planting 🪴</p>
-      <Loader variant='bars' size='md' color='green'/>
+      <p className='text-2xl'>Green Room Loading 🪴</p>
+      <Loader variant='bars' size='md' color='green' />
     </div>
   }
 

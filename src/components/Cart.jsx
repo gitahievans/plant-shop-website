@@ -16,21 +16,21 @@ const Cart = () => {
     return (
         <div className="py-10">
             <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
-            <div className=" mx-auto justify-center flex flex-col items-center lg:flex-row gap-4 relative">
+            <div className="mx-auto flex flex-col items-center lg:flex-row gap-4 relative">
                 <div className="flex flex-col gap-4 rounded-lg md:w-full">
                     {cart && cart.length > 0 ?
                         cart.map(cartItem => <CartCard key={cartItem.id} cartItem={cartItem} />) : <p className='text-2xl self-center'>No cart Items</p>
                     }
                 </div>
                 {/* <!-- Sub total --> */}
-                <div className="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0 lg:w-1/3 lg:self-start lg:mr-20 w-full lg:sticky lg:right-0 lg:top-20 lg:bottom-16">
+                <div className="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0 lg:w-1/3 md:self-start w-full lg:sticky md:right-0 md:top-20 md:bottom-16">
                     <div className="mb-2 flex justify-between">
                         <p className="text-gray-700">Toatal Items</p>
                         <p className="text-gray-700"> {cartTotalQuantity}</p>
                     </div>
                     <div className="mb-2 flex justify-between">
                         <p className="text-gray-700">Subtotal</p>
-                        <p className="text-gray-700">$ {cartTotalAmount}</p>
+                        <p className="text-gray-700 text-xl font-medium">$ {cartTotalAmount}</p>
                     </div>
                     <div className="flex justify-between">
                         <p className="text-gray-700">Shipping</p>

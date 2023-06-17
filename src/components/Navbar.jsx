@@ -50,13 +50,13 @@ const Navbar = () => {
             <p>ROOM</p>
             <span className='animate-bounce text-sm'>🌱 </span> </a>
         </div>
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-10 text-md">
           <NavLink
             to="."
             className={({ isActive }) =>
               isActive
-                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7'
-                : ' h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7'
+                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-[#9A4B9C] py-7'
+                : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
             }
             end
           >
@@ -66,8 +66,8 @@ const Navbar = () => {
             to="/new"
             className={({ isActive }) =>
               isActive
-                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7'
-                : ' h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7'
+                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-[#9A4B9C] py-7'
+                : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
             }
             end
           >
@@ -77,8 +77,8 @@ const Navbar = () => {
             to="/about"
             className={({ isActive }) =>
               isActive
-                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7'
-                : ' h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7'
+                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-[#9A4B9C] py-7'
+                : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
             }
             end
           >
@@ -88,8 +88,8 @@ const Navbar = () => {
             to="/contact"
             className={({ isActive }) =>
               isActive
-                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7'
-                : ' h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7'
+                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-[#9A4B9C] py-7'
+                : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
             }
             end
           >

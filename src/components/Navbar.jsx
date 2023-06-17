@@ -12,7 +12,7 @@ const Navbar = () => {
   const setSideMenuBtnClicked = sideMenuBtnContext?.setSideMenuBtnClicked;
   const { cart } = useContext(CartContext)
 
-  const cost = cart.map(c => parseInt(c.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+  const cost = cart.map(c => (c.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 
   return (
     <nav className="navbar fixed top-0 flex justify-between  border-b max-w-[360px] md:max-w-full bg-white z-50">
@@ -116,7 +116,7 @@ const Navbar = () => {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              <span className="text-green-700 text-base badge badge-sm indicator-item ">
+              <span className="text-red-600 text-lg badge badge-sm indicator-item ">
                 {cart.length}
               </span>
             </div>

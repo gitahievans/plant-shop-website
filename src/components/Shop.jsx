@@ -3,16 +3,12 @@ import { usePlantsData } from '../hooks/usePlantsData';
 import PlantCard from './PlantCard';
 import { FilteredPlantsContext } from '../contexts/filteredPlantsContext';
 import { Loader } from '@mantine/core';
-import { PlantDetailsContext } from '../contexts/PlantDetailsContext';
-import PlantDetails from './PlantDetails';
-
 
 const Shop = () => {
   const [value, setValue] = useState('')
   const { data, isLoading } = usePlantsData();
   const plants = data;
   const { filteredPlants } = useContext(FilteredPlantsContext);
-  const { showPlantDetails } = useContext(PlantDetailsContext);
 
   let searchedPlants = [];
   if (plants && plants.length > 0) {
@@ -28,7 +24,7 @@ const Shop = () => {
 
   return (
     <div className='flex flex-col md:flex-row relative h-full'>
-      <div className="flex flex-col gap-4 pb-3 relative">
+      <div className="flex flex-1 flex-col gap-4 pb-3 relative">
         <form className="flex flex-col gap-2 sticky top-[65px] md:top-[73px] z-30 ">
           <label
             htmlFor="default-search"
@@ -101,7 +97,7 @@ const Shop = () => {
           </div>
         </div>
 
-        <div className=" flex flex-col md:flex-row gap-6 items-center justify-center flex-wrap">
+        <div className=" flex flex-col md:flex-row gap-6 items-center  flex-wrap">
           {filteredPlants && filteredPlants.length > 0 ? (
             filteredPlants.map((plant) => {
               return <PlantCard key={plant.id} plant={plant} />
@@ -118,7 +114,6 @@ const Shop = () => {
           }
         </div>
       </div>
-      {showPlantDetails ? <PlantDetails /> : null}
     </div>
   );
 };

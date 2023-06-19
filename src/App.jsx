@@ -7,7 +7,6 @@ import Contact from './components/Contact';
 import Navbar from './components/Navbar';
 import Filter from './components/Filter';
 import Cart from './components/Cart';
-// import PlantDetails from './components/PlantDetails';
 
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />
-            {/* <Route path="/plants/:id" element={<PlantDetails />} /> */}
           </Route>
         </Routes>
       </main>

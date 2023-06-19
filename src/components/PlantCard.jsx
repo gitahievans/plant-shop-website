@@ -2,28 +2,57 @@
 import { Rating } from '@mantine/core';
 import Heart from '../assets/images/before-like.png';
 import { CartContext } from '../contexts/CartContext';
-import { useContext } from 'react';
-import cartImage from '../assets/icons/shopping-cart.svg'
+import { useContext, useEffect } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import { Modal } from '@mantine/core';
 import { useState } from 'react';
 import { usePlantsData } from '../hooks/usePlantsData';
 import { PlantDetailsContext } from '../contexts/PlantDetailsContext';
+import { doc, updateDoc, collection } from "firebase/firestore";
+import { db } from '../config/firebase'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function PlantCard({ plant }) {
   const { cart, setCart } = useContext(CartContext)
   const plantInCart = cart.some((item) => item.id === plant.id)
   const { setPlantId, plantId } = useContext(PlantDetailsContext);
   const [opened, { open, close }] = useDisclosure(false);
-  const [rating, setRating] = useState();
+  const [rating, setRating] = useState(0);
+  const [checked, setChecked] = useState(false);
   const { data } = usePlantsData();
   const plants = data;
   const modalPlant = plants.filter((plant) => plant.id === plantId)[0];
   const [showFullDescription, setShowFullDescription] = useState(false);
-
+  // console.log(modalPlant)
   const handleClick = (plantId) => {
     open();
     setPlantId(plantId)
+  };
+
+  useEffect(() => {
+    const ratePlant = async () => {
+      try {
+        if (checked) {
+          const docRef = doc(db, "plants", modalPlant?.id);
+          const dataUpdate = { rating: rating };
+          await updateDoc(docRef, dataUpdate);
+          
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    ratePlant();
+  }, [rating, checked, modalPlant?.id]);
+
+  const handleCheck = () => {
+    setChecked(!checked)
+    toast.success(`You gave a ${rating} star rating `, {
+      position: 'top-center',
+      autoClose: 5000
+    })
   };
 
   const maxDescriptionLength = 100;
@@ -77,7 +106,7 @@ function PlantCard({ plant }) {
           opacity: 0.75,
         }}
       >
-        <div className='bg-white flex flex-col px-2 py-10 gap-4 md:gap-8'>
+        <div className='bg-white flex flex-col px-2 py-6 gap-4 md:gap-8'>
           <img src={modalPlant?.image} alt="image" className='h-80 w-full object-cover rounded-xl ' />
           <div className='flex flex-col gap-2'>
             <h2 className="md:text-xl lg:text-2xl font-semibold">{modalPlant?.name}</h2>
@@ -97,7 +126,15 @@ function PlantCard({ plant }) {
           </div>
           <div className='flex flex-col gap-2'>
             <h1 className='text-lg font-semibold'>Rate this plant</h1>
-            <Rating size='lg' fractions={2} value={rating} onChange={setRating} />
+            <div className='flex items-center gap-2'>
+              <Rating size='lg' fractions={2} value={rating} onChange={setRating} />
+              <input
+                type="checkbox"
+                checked={checked}
+                className='checkbox'
+                onChange={handleCheck}
+              />
+            </div>
           </div>
           <div className='flex flex-wrap items-center md:w-3/5 md:justify-between gap-8 md:gap-2'>
             <img src={Heart} alt="like" className='w-8 cursor-pointer' />

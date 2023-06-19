@@ -37,6 +37,7 @@ function PlantCard({ plant }) {
           const docRef = doc(db, "plants", modalPlant?.id);
           const dataUpdate = { rating: rating };
           await updateDoc(docRef, dataUpdate);
+          
         }
       } catch (e) {
         console.log(e);
@@ -48,7 +49,10 @@ function PlantCard({ plant }) {
 
   const handleCheck = () => {
     setChecked(!checked)
-    
+    toast.success(`You gave a ${rating} star rating `, {
+      position: 'top-center',
+      autoClose: 5000
+    })
   };
 
   const maxDescriptionLength = 100;

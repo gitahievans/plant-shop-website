@@ -7,7 +7,7 @@ import Contact from './components/Contact';
 import Navbar from './components/Navbar';
 import Filter from './components/Filter';
 import Cart from './components/Cart';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
 
@@ -26,6 +26,7 @@ function App() {
           </Route>
         </Routes>
       </main>
+      <ToastContainer />
     </div>
   );
 }

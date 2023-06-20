@@ -16,7 +16,7 @@ const Shop = () => {
   }
 
   if (isLoading) {
-    return <div className='flex items-center md:gap-8 md:ml-[40%] ml-[18%] mt-[20%]'>
+    return <div className='flex items-center gap-2 md:gap-4 lg:gap-8 md:ml-[30%] ml-[18%] mt-[20%]'>
       <p className='text-base md:text-2xl'>Green Room Loading 🪴</p>
       <Loader variant='bars' size='sm' md: size='md' color='green' />
     </div>
@@ -97,7 +97,7 @@ const Shop = () => {
           </div>
         </div>
 
-        <div className=" flex flex-col md:flex-row gap-6 items-center  flex-wrap">
+        <div className=" flex flex-col md:flex-row gap-6 items-center md:justify-center lg:justify-normal flex-wrap">
           {filteredPlants && filteredPlants.length > 0 ? (
             filteredPlants.map((plant) => {
               return <PlantCard key={plant.id} plant={plant} />

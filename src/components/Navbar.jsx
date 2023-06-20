@@ -18,7 +18,7 @@ const Navbar = () => {
     <nav className="navbar fixed top-0 flex justify-between  border-b max-w-[360px] md:max-w-full bg-white z-50">
       <button
         type="button"
-        className="inline-flex items-center p-2 mt-2 mr-8 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 "
+        className="inline-flex items-center p-2 mt-2 mr-8 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 "
         onClick={() =>
           setSideMenuBtnClicked && setSideMenuBtnClicked(!sideMenuBtnClicked)
         }

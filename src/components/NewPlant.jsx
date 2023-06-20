@@ -26,8 +26,8 @@ const NewPlant = () => {
 
   return (
     <div className="flex h-fit mt-10">
-      <div className="md:w-1/2 flex items-center justify-center"> 
-      <img src={img} alt="" className='rounded-xl hidden md:block h-[600px] ' />
+      <div className="md:w-1/2 flex items-center justify-center">
+        <img src={img} alt="" className='rounded-xl hidden md:block h-[600px] ' />
       </div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-4 w-full md:w-1/3 px-2 mx-auto" >
         <h1 className="text-center font-semibold text-lg">Add a New Plant 🪴</h1>

@@ -46,7 +46,7 @@ const Filter = () => {
 
     const filtered = plants?.filter(plant => {
       // get categories of the plant
-      const plantCategories = plant.category.split(',')
+      const plantCategories = plant.category
 
       return plantCategories.some((category) => {
         // get category defined by the clicked checkbox

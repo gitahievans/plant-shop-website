@@ -8,7 +8,7 @@ import { Modal } from '@mantine/core';
 import { useState } from 'react';
 import { usePlantsData } from '../hooks/usePlantsData';
 import { PlantDetailsContext } from '../contexts/PlantDetailsContext';
-import { doc, updateDoc, collection } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from '../config/firebase'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,7 +37,7 @@ function PlantCard({ plant }) {
           const docRef = doc(db, "plants", modalPlant?.id);
           const dataUpdate = { rating: rating };
           await updateDoc(docRef, dataUpdate);
-          
+
         }
       } catch (e) {
         console.log(e);

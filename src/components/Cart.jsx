@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 import CartCard from './CartCard'
 import { CartContext } from '../contexts/CartContext'
+import { Link } from 'react-router-dom';
 
 
 const Cart = () => {
@@ -19,7 +20,12 @@ const Cart = () => {
             <div className="mx-auto flex flex-col items-center lg:flex-row gap-4 relative">
                 <div className="flex flex-col gap-4 rounded-lg md:w-full">
                     {cart && cart.length > 0 ?
-                        cart.map(cartItem => <CartCard key={cartItem.id} cartItem={cartItem} />) : <p className='text-2xl self-center'>No cart Items</p>
+                        cart.map(cartItem => <CartCard key={cartItem.id} cartItem={cartItem} />)
+                        :
+                        <div className='flex flex-col items-center'>
+                            <p className='text-2xl self-center'>No cart Items</p>
+                            <Link to='/' className="mt-6 w-full md:w-1/3 rounded-md bg-blue-500 py-2 font-medium text-blue-50 hover:bg-blue-600 btn">Go Shopping</Link>
+                        </div>
                     }
                 </div>
                 {/* <!-- Sub total --> */}
@@ -44,7 +50,7 @@ const Cart = () => {
                             <p className="text-sm text-gray-700">including VAT</p>
                         </div>
                     </div>
-                    <button className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 btn">Check out</button>
+                    <Link to='/check' className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 btn">Check out</Link>
                 </div>
             </div>
         </div>

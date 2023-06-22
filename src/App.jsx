@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Filter from './components/Filter';
 import Cart from './components/Cart';
 import { ToastContainer, toast } from 'react-toastify';
+import Checkout from './components/Checkout';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/check" element={<Checkout />} />
           </Route>
         </Routes>
       </main>

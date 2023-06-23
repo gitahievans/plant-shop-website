@@ -50,7 +50,9 @@ const Cart = () => {
                             <p className="text-sm text-gray-700">including VAT</p>
                         </div>
                     </div>
-                    <Link to='/check' className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 btn">Check out</Link>
+                    <button disabled={cart.length === 0} className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 btn">
+                        <Link to='/check'>Check out</Link>
+                    </button>
                 </div>
             </div>
         </div>

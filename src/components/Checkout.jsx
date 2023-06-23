@@ -1,41 +1,53 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Stepper, Button, Group } from '@mantine/core';
 import ShippingDetailsForm from './ShippingDetailsForm';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import OrderSummary from './OrderSummary';
+import { CartContext } from '../contexts/CartContext';
 
 function Checkout() {
     const [active, setActive] = useState(0);
     const [isValid, setIsValid] = useState(false);
-    const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
+    const { cart, setCart } = useContext(CartContext)
+
+    const cost = cart.map(c => (c.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+
+    const nextStep = () => setActive((current) => (current < 2 ? current + 1 : current));
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 
-
     const handleFormValidity = (isValid) => {
-        console.log(isValid)
         setIsValid(isValid);
     };
 
 
     return (
-        <div className='max-w-[360px] md:max-w-lg'>
-            <h1 className="text-center font-semibold text-lg md:text-2xl">Check out  🛒</h1>
-            <Stepper active={active} onStepClick={setActive} >
-                <Stepper.Step label="1" description="Shipping details">
-                    <ShippingDetailsForm checkFormValidity={handleFormValidity} />
-                </Stepper.Step>
-                <Stepper.Step label="2" description="Payment details">
-                    Step 2 content: Verify email
-                </Stepper.Step>
-            </Stepper>
-
-            <div className='flex flex-col md:flex-row-reverse items-center gap-4 md:justify-between mt-5'>
-                <Group className='flex  items-center justify-end' >
-                    <Button className='px-4  rounded-md btn' onClick={prevStep}>Back</Button>
-                    <Button className='px-4 bg-green-600 rounded-md text-white btn' onClick={isValid ? nextStep : null}>Next step</Button>
-                </Group>
-                <NavLink to='/cart' className='px-2 py-2 border rounded-xl self-center hover:bg-green-600 hover:text-white transition-all ease-in-out duration-500'>Back to cart</NavLink>
+        <div className='max-w-[360px] md:max-w-xl mx-auto md:border md:p-4 rounded-xl'>
+            <div className='flex items-center justify-between'>
+                {active !== 2 && <NavLink to='/cart' className=''>Back to cart</NavLink>}
+                <h1 className="text-center font-semibold md:text-xl">Check out  🛒</h1>
             </div>
-
+            <div className='flex flex-col mt-2 gap-4'>
+                <Stepper size='sm' color="green" radius='lg' active={active} onStepClick={setActive} >
+                    <Stepper.Step label="1" description="Shipping details">
+                        <ShippingDetailsForm checkFormValidity={handleFormValidity} />
+                    </Stepper.Step>
+                    <Stepper.Step label="2" description="Order summary">
+                        <OrderSummary />
+                    </Stepper.Step>
+                </Stepper>
+                {active === 2 ?
+                    <div className=' flex flex-col gap-3 items-center'>
+                        <h1 className='text-lg font-medium'>Thank you for your purchase, esteemed customer.</h1>
+                        <h2>Spread the good word!</h2>
+                        <hr />
+                        <Link to='/' onClick={() => setCart([])} className='px-4 py-4 rounded-md btn-info w-1/2 md:w-1/3 text-white font-semibold'>Back to shopping</Link>
+                    </div>
+                    : null}
+                {active !== 2 ? <Group className='flex items-center justify-end mt-4' >
+                    {active !== 0 ? <Button className='px-4 rounded-md btn' onClick={prevStep}>Back</Button> : null}
+                    <Button className='px-4 bg-green-600 rounded-md text-white btn' onClick={nextStep}>{active === 1 ? `Pay - $ ${cost}` : 'Next step'}</Button>
+                </Group> : null}
+            </div>
         </div>
     );
 }

@@ -1,19 +1,18 @@
 import { useContext, useEffect } from 'react'
 import CartCard from './CartCard'
 import { CartContext } from '../contexts/CartContext'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Cart = () => {
-    const { cartTotalAmount, cartTotalQuantity, setCartTotalAmount, cart, setCartTotalQuantity } = useContext(CartContext);
-
+    const { cartTotalAmount, cartTotalQuantity, setCartTotalAmount, cart, shipping, setCartTotalQuantity } = useContext(CartContext);
+    const navigate = useNavigate()
     useEffect(() => {
         setCartTotalAmount(cart.map((item) => item).reduce((acc, curr) => acc + (curr.price) * (curr.quantity), 0));
 
         setCartTotalQuantity(cart.map((item) => item).reduce((acc, curr) => acc + curr.quantity, 0))
     }, [cart]);
 
-    const shipping = 4.99;
     return (
         <div className="md:py-10">
             <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
@@ -46,12 +45,12 @@ const Cart = () => {
                     <div className="flex justify-between">
                         <p className="text-lg font-bold">Total</p>
                         <div className="">
-                            {cartTotalAmount ? <p className="mb-1 text-lg font-bold">$ {cartTotalAmount - shipping}</p> : <p className="mb-1 text-lg font-bold">$ 0</p>}
+                            {cartTotalAmount ? <p className="mb-1 text-lg font-bold">$ {cartTotalAmount + shipping}</p> : <p className="mb-1 text-lg font-bold">$ 0</p>}
                             <p className="text-sm text-gray-700">including VAT</p>
                         </div>
                     </div>
-                    <button disabled={cart.length === 0} className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 btn">
-                        <Link to='/check'>Check out</Link>
+                    <button disabled={cart.length === 0} onClick={() => navigate('/check')} className="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600 btn">
+                        Check out
                     </button>
                 </div>
             </div>

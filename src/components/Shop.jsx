@@ -60,7 +60,7 @@ const Shop = () => {
           </div>
           {value ? <p className='text-base'>Search results for <span className='text-lg font-semibold'>{value}</span> </p> : null}
         </form>
-        <details className="md:hidden dropdown z-30">
+        {/* <details className="md:hidden dropdown z-30">
           <summary className=" btn w-full">Sort</summary>
           <ul className="flex flex-col gap-2 p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52">
             <li>
@@ -78,8 +78,8 @@ const Shop = () => {
               <a className="px-4 py-2 border rounded-lg flex-1">Price</a>
             </li>
           </ul>
-        </details>
-        <div className="hidden md:flex items-center gap-2 ">
+        </details> */}
+        {/* <div className="hidden md:flex items-center gap-2 ">
           <p className="text-black">Sort</p>
           <div className="text-black flex flex-wrap gap-2">
             <p className="px-4 py-2 border bg-[#47a358] rounded-lg flex-1">
@@ -95,7 +95,7 @@ const Shop = () => {
               Price
             </p>
           </div>
-        </div>
+        </div> */}
 
         <div className=" flex flex-col md:flex-row gap-6 items-center md:justify-center lg:justify-normal flex-wrap">
           {filteredPlants && filteredPlants.length > 0 ? (

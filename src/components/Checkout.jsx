@@ -8,7 +8,7 @@ import { CartContext } from '../contexts/CartContext';
 function Checkout() {
     const [active, setActive] = useState(0);
     const [isValid, setIsValid] = useState(false);
-    const { cart, setCart } = useContext(CartContext)
+    const { cart, setCart, shipping } = useContext(CartContext)
 
     const cost = cart.map(c => (c.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
 
@@ -36,16 +36,16 @@ function Checkout() {
                     </Stepper.Step>
                 </Stepper>
                 {active === 2 ?
-                    <div className=' flex flex-col gap-3 items-center'>
-                        <h1 className='text-lg font-medium'>Thank you for your purchase, esteemed customer.</h1>
+                    <div className=' flex flex-col gap-3 items-center mt-28 text-center'>
+                        <h1 className='text-lg font-medium '>Thank you for your purchase, esteemed customer.</h1>
                         <h2>Spread the good word!</h2>
                         <hr />
-                        <Link to='/' onClick={() => setCart([])} className='px-4 py-4 rounded-md btn-info w-1/2 md:w-1/3 text-white font-semibold'>Back to shopping</Link>
+                        <Link to='/' onClick={() => setCart([])} className='px-4 py-4 rounded-md btn-info md:w-1/3 text-white font-semibold flex items-center justify-center'>Back to shopping</Link>
                     </div>
                     : null}
                 {active !== 2 ? <Group className='flex items-center justify-end mt-4' >
                     {active !== 0 ? <Button className='px-4 rounded-md btn' onClick={prevStep}>Back</Button> : null}
-                    <Button className='px-4 bg-green-600 rounded-md text-white btn' onClick={nextStep}>{active === 1 ? `Pay - $ ${cost}` : 'Next step'}</Button>
+                    <Button className='px-4 bg-green-600 rounded-md text-white btn' onClick={nextStep}>{active === 1 ? `Pay - $ ${cost + shipping}` : 'Next step'}</Button>
                 </Group> : null}
             </div>
         </div>

@@ -27,8 +27,8 @@ const OrderSummary = () => {
             <hr />
             <div className="flex justify-between ">
                 <div className="flex flex-col gap-2 w-full">
-                    <h2>Payment method</h2>
-                    <div className="flex flex-col md:flex-row items-center gap-1 w-full justify-between">
+                    <h2 className="font-semibold">Payment method</h2>
+                    <div className="flex flex-col md:flex-row md:items-center gap-1 w-full justify-between">
                         <h3>Card number</h3>
                         <div className="w-1/2"> <div className="flex items-center gap-3">
                             <img src={visa} alt="card" className="h-10" />
@@ -36,12 +36,12 @@ const OrderSummary = () => {
                         </div></div>
 
                     </div>
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-1">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-1">
                         <h3>Expiry</h3>
                         <div className="w-1/2"><DateInput valueFormat="MM/YY" placeholder="MM/YY" allowDeselect size="xs" radius='md' />
                         </div>
                     </div>
-                    <div className="flex flex-col gap-1 md:flex-row items-center justify-between">
+                    <div className="flex flex-col gap-1 md:flex-row md:items-center justify-between">
                         <h3>Cvv</h3>
                         <div className="w-1/2">
                             <NumberInput size="xs" radius='md' min={0} type="number" placeholder="***" />

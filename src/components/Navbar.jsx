@@ -44,9 +44,9 @@ const Navbar = () => {
         <div className="flex items-center">
           <IconMenu2 className="hidden md:flex" />
           <a className="btn btn-ghost normal-case text-lg md:text-xl">
-            <p>GREEN</p>
+            <p>URBAN</p>
             <span className="animate-bounce text-sm">🌲</span>
-            <p>ROOM</p>
+            <p>SPROUT</p>
             <span className="animate-bounce text-sm">🌱 </span>{" "}
           </a>
         </div>

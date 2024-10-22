@@ -42,7 +42,7 @@ const Navbar = () => {
       </button>
       <div className="flex-1 gap-40 items-center">
         <div className="flex items-center">
-          <IconMenu2 />
+          <IconMenu2 className="hidden md:flex" />
           <a className="btn btn-ghost normal-case text-lg md:text-xl">
             <p>GREEN</p>
             <span className="animate-bounce text-sm">🌲</span>
@@ -73,28 +73,6 @@ const Navbar = () => {
           >
             Add New
           </NavLink>
-          {/* <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-[#9A4B9C] py-7'
-                : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
-            }
-            end
-          >
-            About Us
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive
-                ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-[#9A4B9C] py-7'
-                : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
-            }
-            end
-          >
-            Contact Us
-          </NavLink> */}
         </div>
       </div>
 

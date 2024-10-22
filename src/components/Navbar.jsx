@@ -1,18 +1,21 @@
-import { NavLink } from 'react-router-dom';
-import profilePic from '../assets/images/me.jpg';
-import menu from '../assets/icons/mobile-menu.svg';
-import { useContext } from 'react';
-import { SideMenuBtnContext } from '../contexts/mobileSideMenuShow';
-import { CartContext } from '../contexts/CartContext';
+import { NavLink } from "react-router-dom";
+import profilePic from "../assets/images/me.jpg";
+import menu from "../assets/icons/mobile-menu.svg";
+import { useContext } from "react";
+import { SideMenuBtnContext } from "../contexts/mobileSideMenuShow";
+import { CartContext } from "../contexts/CartContext";
+import { IconMenu2 } from "@tabler/icons-react";
 
 const Navbar = () => {
   const sideMenuBtnContext = useContext(SideMenuBtnContext);
 
   const sideMenuBtnClicked = sideMenuBtnContext?.sideMenuBtnClicked;
   const setSideMenuBtnClicked = sideMenuBtnContext?.setSideMenuBtnClicked;
-  const { cart } = useContext(CartContext)
+  const { cart } = useContext(CartContext);
 
-  const cost = cart.map(c => (c.price)).reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+  const cost = cart
+    .map((c) => c.price)
+    .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
   return (
     <nav className="navbar fixed top-0 flex justify-between  border-b max-w-[360px] md:max-w-full bg-white z-50">
@@ -39,24 +42,21 @@ const Navbar = () => {
       </button>
       <div className="flex-1 gap-40 items-center">
         <div className="flex items-center">
-          <img
-            src="https://media.licdn.com/dms/image/C4D0BAQFp8rS9GGBjOg/company-logo_200_200/0/1624400083492?e=1694044800&v=beta&t=MpusRa2YbrI2W_GuUBvG6FxyH_bNtGEt3dDdjUExEJs"
-            alt="icon"
-            className="h-8 md:h-10"
-          />
+          <IconMenu2 />
           <a className="btn btn-ghost normal-case text-lg md:text-xl">
             <p>GREEN</p>
-            <span className='animate-bounce text-sm'>🌲</span>
+            <span className="animate-bounce text-sm">🌲</span>
             <p>ROOM</p>
-            <span className='animate-bounce text-sm'>🌱 </span> </a>
+            <span className="animate-bounce text-sm">🌱 </span>{" "}
+          </a>
         </div>
         <div className="hidden md:flex items-center gap-10 text-md">
           <NavLink
             to="."
             className={({ isActive }) =>
               isActive
-                ? 'text-violet-700 h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-violet-700 py-7'
-                : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
+                ? "text-violet-700 h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-violet-700 py-7"
+                : " h-12 flex items-center justify-center cursor-pointer font-medium py-7"
             }
             end
           >
@@ -66,8 +66,8 @@ const Navbar = () => {
             to="/new"
             className={({ isActive }) =>
               isActive
-                ? 'text-violet-700 h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-violet-700 py-7'
-                : ' h-12 flex items-center justify-center cursor-pointer font-medium py-7'
+                ? "text-violet-700 h-12 flex items-center justify-center cursor-pointer font-medium border-b-2 border-b-violet-700 py-7"
+                : " h-12 flex items-center justify-center cursor-pointer font-medium py-7"
             }
             end
           >
@@ -128,7 +128,7 @@ const Navbar = () => {
             <div className="card-body">
               <span className="font-bold text-lg">{cart.length} Items</span>
               <span className="text-info">Subtotal: ${cost}</span>
-              <NavLink to='/cart' className="card-actions">
+              <NavLink to="/cart" className="card-actions">
                 <button className="btn btn-primary btn-block">View cart</button>
               </NavLink>
             </div>
@@ -155,8 +155,8 @@ const Navbar = () => {
                 to="/cart"
                 className={({ isActive }) =>
                   isActive
-                    ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7'
-                    : ' h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7'
+                    ? "text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7"
+                    : " h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7"
                 }
                 end
               >
@@ -175,7 +175,9 @@ const Navbar = () => {
                       d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                     />
                   </svg>
-                  <span className="badge badge-sm indicator-item">{cart.length}</span>
+                  <span className="badge badge-sm indicator-item">
+                    {cart.length}
+                  </span>
                 </div>
                 <p>Cart</p>
               </NavLink>
@@ -185,8 +187,8 @@ const Navbar = () => {
                 to="."
                 className={({ isActive }) =>
                   isActive
-                    ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7'
-                    : ' h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7'
+                    ? "text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7"
+                    : " h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7"
                 }
                 end
               >
@@ -198,8 +200,8 @@ const Navbar = () => {
                 to="/new"
                 className={({ isActive }) =>
                   isActive
-                    ? 'text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7 '
-                    : ' h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7'
+                    ? "text-[#9A4B9C] h-12 flex items-center justify-center cursor-pointer text-sm font-medium border-b-2 border-b-[#9A4B9C] py-7 "
+                    : " h-12 flex items-center justify-center cursor-pointer text-sm font-medium py-7"
                 }
                 end
               >
